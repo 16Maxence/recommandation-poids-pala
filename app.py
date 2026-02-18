@@ -2071,10 +2071,14 @@ st.image(qr_buffer, caption=URL_QR, width=250)
 # ------------------------------------------------------------
 # LIENS PERSONNELS (en commentaires pour le moment)
 # ------------------------------------------------------------
+# ---------------------------------------------------------------
+# LIENS PERSONNELS
+# ---------------------------------------------------------------
 st.markdown("### 🔗 Mes liens personnels")
- 
+
 st.write("Profil LinkedIn :")
-st.code("https://www.linkedin.com/in/maxence-carmentos-601a68222/", language="text")
+st.markdown("[👉 Mon profil LinkedIn](https://www.linkedin.com/in/maxence-carmentos-601a68222/)")
+
  
 #    st.write("Post LinkedIn :")
 #  st.code("# https://www.linkedin.com/posts/ton-post", language="text")
