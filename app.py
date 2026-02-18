@@ -2077,7 +2077,7 @@ st.image(qr_buffer, caption=URL_QR, width=250)
 st.markdown("### 🔗 Mes liens personnels")
 
 st.write("Profil LinkedIn :")
-st.markdown("[👉 Mon profil LinkedIn](https://www.linkedin.com/in/maxence-carmentos-601a68222/)")
+st.markdown("[👉 Mon profil LinkedIn - Maxence Carmentos](https://www.linkedin.com/in/maxence-carmentos-601a68222/)")
 
  
 #    st.write("Post LinkedIn :")
