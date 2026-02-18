@@ -1999,7 +1999,22 @@ if st.button("Valider"):
                 f"Poids : {poids} Kg\n"
                 f"Style de jeu : {style}\n\n"
                 f"Poids de la pala selon le poids : {poids_pala_poids} g\n"
-                f"Poids de la pala selon le style : {poids_pala_style} g"
+                f"Poids de la pala selon le style : {poids_pala_style} g\n\n"
+                "Informations complémentaires :\n"
+                "- Le poids de la pala est basé sur un modèle linéaire : plus un joueur est lourd, plus il peut gérer une pala légèrement plus lourde.\n"
+                "- Ajustement selon le style :\n"
+                "    → Style Puissance : pala plus légère (-10 g)\n"
+                "    → Style Contrôle : pala plus lourde (+10 g)\n"
+                "    → Style Neutre : poids standard\n"
+                "- Pourquoi 10 g comptent ? 10 g situés à ~28 cm du poignet = +3 % d’inertie ressentie.\n"
+                "- Cela influence la fatigue et la vitesse de swing sur tout un match.\n"
+                "- Poste de jeu :\n"
+                "    → Arrière : +5 g pour la stabilité\n"
+                "    → Avant : -5 g pour la maniabilité\n"
+                "- Bec long / court :\n"
+                "    → Bec long = inertie plus forte → poids légèrement réduit\n"
+                "    → Bec court = inertie plus faible → poids légèrement augmenté\n"
+                "- Le test terrain reste la vérité : les sensations priment toujours sur le modèle."
             )
 
             st.session_state["contenu_popup"] = contenu_popup
