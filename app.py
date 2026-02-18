@@ -1790,13 +1790,10 @@ RAW_DATA = [
     },
 ]
 
-
-
 # ------------------------------------------------------------
-# 2) URL FIXE POUR LE QR CODE (TON SITE INTERNET)
+# 2) URL FIXE POUR LE QR CODE
 # ------------------------------------------------------------
-URL_QR = "https://recommandation-poids-pala-mbx6hsengztr5ywqbgdfku.streamlit.app/"   # <<< MODIFIE ICI >>>
-
+URL_QR = "https://recommandation-poids-pala-mbx6hsengztr5ywqbgdfku.streamlit.app/"
 
 # ============================================================
 # 3) GESTION DES STATS (LOCAL)
@@ -1819,7 +1816,6 @@ def charger_stats():
     with open(STATS_FILE, "r") as f:
         stats = json.load(f)
 
-    # Correction automatique
     for cle, valeur in stats_defaut.items():
         if cle not in stats:
             stats[cle] = valeur
@@ -2041,47 +2037,13 @@ if st.session_state["contenu_popup"]:
 
 
 # ------------------------------------------------------------
-# LISTE DES JOUEURS PUBLIC
-# ------------------------------------------------------------
-#st.markdown("---")
-#st.subheader("📋 Liste des joueurs enregistrés")
-
-#joueurs = charger_joueurs()
-#
-#if joueurs:
-#    for j in joueurs:
-#        st.write(
- #           f"**{j['prenom']} {j['nom']}** — {j['poids']} kg — {j['style']} — "
- #           f"Pala poids: {j['pala_poids']} g — Style: {j['pala_style']} g — "
- #           f"({j['date']})"
- #       )
-#else:
-#    st.write("Aucun joueur enregistré pour le moment.")
-
-
-# ------------------------------------------------------------
-# QR CODE FIXE (TON SITE INTERNET)
+# QR CODE FIXE
 # ------------------------------------------------------------
 st.markdown("---")
 st.subheader("Scanner pour ouvrir l'application")
 
 qr_buffer = generate_qr_code(URL_QR)
 st.image(qr_buffer, caption=URL_QR, width=250)
-
-# ------------------------------------------------------------
-# LIENS PERSONNELS (en commentaires pour le moment)
-# ------------------------------------------------------------
-# ---------------------------------------------------------------
-# LIENS PERSONNELS
-# ---------------------------------------------------------------
-st.markdown("### 🔗 Mes liens personnels")
-
-st.write("Profil LinkedIn :")
-st.markdown("[👉 Mon profil LinkedIn - Maxence Carmentos](https://www.linkedin.com/in/maxence-carmentos-601a68222/)")
-
- 
-#    st.write("Post LinkedIn :")
-#  st.code("# https://www.linkedin.com/posts/ton-post", language="text")
 
 
 # ------------------------------------------------------------
@@ -2097,12 +2059,17 @@ if is_admin:
     st.subheader("Zone privée (admin)")
 
     # ------------------------------------------------------------
+    # LIENS PERSONNELS
+    # ------------------------------------------------------------
+    st.markdown("### 🔗 Mes liens personnels")
+    st.markdown("[👉 Mon profil LinkedIn - Maxence Carmentos](https://www.linkedin.com/in/maxence-carmentos-601a68222/)")
+
+    # ------------------------------------------------------------
     # STATISTIQUES PRIVÉES
     # ------------------------------------------------------------
     stats = charger_stats()
     st.markdown("### 📊 Statistiques d'utilisation")
     st.write(stats)
-
 
     # ------------------------------------------------------------
     # LISTE PRIVÉE DES JOUEURS
@@ -2140,6 +2107,5 @@ if is_admin:
 
 else:
     st.caption("Zone réservée à l'administrateur.")
-
 
 
