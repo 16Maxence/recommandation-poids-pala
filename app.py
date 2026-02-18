@@ -2068,6 +2068,16 @@ st.subheader("Scanner pour ouvrir l'application")
 qr_buffer = generate_qr_code(URL_QR)
 st.image(qr_buffer, caption=URL_QR, width=250)
 
+# ------------------------------------------------------------
+# LIENS PERSONNELS (en commentaires pour le moment)
+# ------------------------------------------------------------
+st.markdown("### 🔗 Mes liens personnels")
+ 
+st.write("Profil LinkedIn :")
+st.code("https://www.linkedin.com/in/maxence-carmentos-601a68222/", language="text")
+ 
+#    st.write("Post LinkedIn :")
+#  st.code("# https://www.linkedin.com/posts/ton-post", language="text")
 
 
 # ------------------------------------------------------------
@@ -2089,16 +2099,6 @@ if is_admin:
     st.markdown("### 📊 Statistiques d'utilisation")
     st.write(stats)
 
-    # ------------------------------------------------------------
-    # LIENS PERSONNELS (en commentaires pour le moment)
-    # ------------------------------------------------------------
-    st.markdown("### 🔗 Mes liens personnels")
- 
-    st.write("Profil LinkedIn :")
-    st.code("https://www.linkedin.com/in/maxence-carmentos-601a68222/", language="text")
- 
-#    st.write("Post LinkedIn :")
- #   st.code("# https://www.linkedin.com/posts/ton-post", language="text")
 
     # ------------------------------------------------------------
     # LISTE PRIVÉE DES JOUEURS
