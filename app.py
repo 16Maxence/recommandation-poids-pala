@@ -1795,7 +1795,7 @@ RAW_DATA = [
 # ------------------------------------------------------------
 # 2) URL FIXE POUR LE QR CODE (TON SITE INTERNET)
 # ------------------------------------------------------------
-URL_QR = "https://www.recommendation-poids-pala.fr"   # <<< MODIFIE ICI >>>
+URL_QR = "https://recommandation-poids-pala-mbx6hsengztr5ywqbgdfku.streamlit.app/"   # <<< MODIFIE ICI >>>
 
 
 # ============================================================
