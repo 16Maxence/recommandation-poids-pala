@@ -2092,16 +2092,13 @@ if is_admin:
     # ------------------------------------------------------------
     # LIENS PERSONNELS (en commentaires pour le moment)
     # ------------------------------------------------------------
- #    st.markdown("### 🔗 Mes liens personnels")
- #
- #    st.write("Profil LinkedIn :")
- #    st.code("# https://www.linkedin.com/in/ton-profil", language="text")
- #
-   # st.write("Post LinkedIn :")
-   # st.code("# https://www.linkedin.com/posts/ton-post", language="text")
- # #
-   # st.write("Site internet :")
-   # st.code("# https://www.ton-site.fr", language="text")
+    st.markdown("### 🔗 Mes liens personnels")
+ 
+    st.write("Profil LinkedIn :")
+    st.code("https://www.linkedin.com/in/maxence-carmentos-601a68222/", language="text")
+ 
+#    st.write("Post LinkedIn :")
+ #   st.code("# https://www.linkedin.com/posts/ton-post", language="text")
 
     # ------------------------------------------------------------
     # LISTE PRIVÉE DES JOUEURS
