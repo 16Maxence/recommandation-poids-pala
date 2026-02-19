@@ -1914,29 +1914,61 @@ def generate_pdf(contenu_popup):
     c = canvas.Canvas(buffer, pagesize=A4)
     width, height = A4
 
-    c.setFont("Helvetica-Bold", 16)
-    c.drawString(40, height - 40, "Recommandation de pala – Résumé joueur")
+    # Marges
+    margin_left = 40
+    margin_right = width - 40
+    y = height - 50
 
+    # Titre centré
+    c.setFont("Helvetica-Bold", 18)
+    c.drawCentredString(width / 2, y, "Recommandation de pala – Résumé joueur")
+    y -= 40
+
+    # Ligne de séparation
+    c.setLineWidth(1)
+    c.line(margin_left, y, margin_right, y)
+    y -= 30
+
+    # Sous-titre
+    c.setFont("Helvetica-Bold", 14)
+    c.drawString(margin_left, y, "Informations du joueur")
+    y -= 25
+
+    # Texte principal
     c.setFont("Helvetica", 11)
 
-    y = height - 80
+    lignes = contenu_popup.split("\n")
     max_width = width - 80
 
-    lignes = contenu_popup.split("\n")
-
     for line in lignes:
-        wrapped_lines = simpleSplit(line, "Helvetica", 11, max_width)
 
-        for wl in wrapped_lines:
-            if y < 40:
-                c.showPage()
-                c.setFont("Helvetica", 11)
-                y = height - 40
+        # Saut de page si nécessaire
+        if y < 60:
+            c.showPage()
+            c.setFont("Helvetica", 11)
+            y = height - 60
 
-            c.drawString(40, y, wl)
-            y -= 18
+        # Sous-titre "Informations complémentaires"
+        if line.strip().startswith("Informations complémentaires"):
+            y -= 10
+            c.setFont("Helvetica-Bold", 13)
+            c.drawString(margin_left, y, "Informations complémentaires")
+            y -= 20
+            c.setFont("Helvetica", 11)
+            continue
+
+        # Texte normal avec retour à la ligne automatique
+        wrapped = simpleSplit(line, "Helvetica", 11, max_width)
+        for wl in wrapped:
+            c.drawString(margin_left, y, wl)
+            y -= 16
 
         y -= 6
+
+    # Ligne finale
+    y -= 10
+    c.setLineWidth(0.5)
+    c.line(margin_left, y, margin_right, y)
 
     c.save()
     buffer.seek(0)
@@ -2107,5 +2139,6 @@ if is_admin:
 
 else:
     st.caption("Zone réservée à l'administrateur.")
+
 
 
