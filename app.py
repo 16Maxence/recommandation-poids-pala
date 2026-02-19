@@ -1915,64 +1915,71 @@ def generate_pdf(contenu_popup):
     width, height = A4
 
     # Marges
-    margin_left = 40
-    margin_right = width - 40
-    y = height - 50
+    margin_left = 50
+    margin_right = width - 50
+    y = height - 60
 
-    # Titre centré
-    c.setFont("Helvetica-Bold", 18)
-    c.drawCentredString(width / 2, y, "Recommandation de pala – Résumé joueur")
+    # ===== TITRE =====
+    c.setFont("Helvetica-Bold", 20)
+    c.drawCentredString(width / 2, y, "Recommandation de pala")
+    y -= 35
+
+    c.setFont("Helvetica", 13)
+    c.drawCentredString(width / 2, y, "Résumé du joueur")
     y -= 40
 
-    # Ligne de séparation
-    c.setLineWidth(1)
+    # Ligne décorative
+    c.setLineWidth(2)
+    c.setStrokeColorRGB(0.2, 0.4, 0.8)
     c.line(margin_left, y, margin_right, y)
     y -= 30
 
-    # Sous-titre
+    # ===== ENCADRÉ : INFORMATIONS DU JOUEUR =====
     c.setFont("Helvetica-Bold", 14)
     c.drawString(margin_left, y, "Informations du joueur")
-    y -= 25
+    y -= 20
 
-    # Texte principal
+    # Encadré
+    box_top = y + 10
+    box_bottom = y - 80
+    c.setLineWidth(1)
+    c.setStrokeColorRGB(0.2, 0.4, 0.8)
+    c.rect(margin_left - 5, box_bottom, (margin_right - margin_left) + 10, 90, stroke=1, fill=0)
+
     c.setFont("Helvetica", 11)
 
-    lignes = contenu_popup.split("\n")
-    max_width = width - 80
+    for line in contenu_popup.split("\n")[:5]:  # Les 5 premières lignes = infos joueur
+        c.drawString(margin_left, y, line)
+        y -= 16
 
-    for line in lignes:
+    y -= 20
 
-        # Saut de page si nécessaire
-        if y < 60:
-            c.showPage()
-            c.setFont("Helvetica", 11)
-            y = height - 60
+    # ===== INFORMATIONS COMPLÉMENTAIRES =====
+    c.setFont("Helvetica-Bold", 14)
+    c.drawString(margin_left, y, "Informations complémentaires")
+    y -= 20
 
-        # Sous-titre "Informations complémentaires"
-        if line.strip().startswith("Informations complémentaires"):
-            y -= 10
-            c.setFont("Helvetica-Bold", 13)
-            c.drawString(margin_left, y, "Informations complémentaires")
-            y -= 20
-            c.setFont("Helvetica", 11)
-            continue
+    c.setFont("Helvetica", 11)
+    max_width = width - 100
 
-        # Texte normal avec retour à la ligne automatique
+    for line in contenu_popup.split("\n")[5:]:  # Le reste = explications
         wrapped = simpleSplit(line, "Helvetica", 11, max_width)
+
         for wl in wrapped:
+            if y < 60:
+                c.showPage()
+                c.setFont("Helvetica", 11)
+                y = height - 60
+
             c.drawString(margin_left, y, wl)
-            y -= 16
+            y -= 15
 
-        y -= 6
-
-    # Ligne finale
-    y -= 10
-    c.setLineWidth(0.5)
-    c.line(margin_left, y, margin_right, y)
+        y -= 5
 
     c.save()
     buffer.seek(0)
     return buffer
+
 
 
 # ============================================================
@@ -2077,6 +2084,11 @@ st.subheader("Scanner pour ouvrir l'application")
 qr_buffer = generate_qr_code(URL_QR)
 st.image(qr_buffer, caption=URL_QR, width=250)
 
+# ------------------------------------------------------------
+# LIENS PERSONNELS
+# ------------------------------------------------------------
+st.markdown("### 🔗 Mes liens personnels")
+st.markdown("[👉 Mon profil LinkedIn - Maxence Carmentos](https://www.linkedin.com/in/maxence-carmentos-601a68222/)")
 
 # ------------------------------------------------------------
 # ZONE PRIVÉE — uniquement si ?admin=1
@@ -2089,12 +2101,6 @@ is_admin = params.get("admin") == "1"
 if is_admin:
 
     st.subheader("Zone privée (admin)")
-
-    # ------------------------------------------------------------
-    # LIENS PERSONNELS
-    # ------------------------------------------------------------
-    st.markdown("### 🔗 Mes liens personnels")
-    st.markdown("[👉 Mon profil LinkedIn - Maxence Carmentos](https://www.linkedin.com/in/maxence-carmentos-601a68222/)")
 
     # ------------------------------------------------------------
     # STATISTIQUES PRIVÉES
@@ -2139,6 +2145,5 @@ if is_admin:
 
 else:
     st.caption("Zone réservée à l'administrateur.")
-
 
 
