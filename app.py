@@ -2100,6 +2100,7 @@ st.image(qr_buffer, caption=URL_QR, width=250)
 # ------------------------------------------------------------
 st.markdown("### 🔗 Mes liens personnels")
 st.markdown("[👉 Mon profil LinkedIn - Maxence Carmentos](https://www.linkedin.com/in/maxence-carmentos-601a68222/)")
+st.markdown("[👉 Ma publication LinkedIn - Maxence Carmentos](https://www.linkedin.com/posts/maxence-carmentos-601a68222_excel-github-streamlit-activity-7430272446429167617-Mzq4?utm_source=share&utm_medium=member_desktop&rcm=ACoAADgKt2EBvM3Qzl62P7MLuBVDjgwHrA5TuhY)")
 
 
 
@@ -2158,5 +2159,6 @@ if is_admin:
 
 else:
     st.caption("Zone réservée à l'administrateur.")
+
 
 
