@@ -1939,30 +1939,37 @@ def generate_pdf(contenu_popup):
     c.drawString(margin_left, y, "Informations du joueur")
     y -= 20
 
-    # Encadré
-    box_top = y + 10
-    box_bottom = y - 80
+    # On récupère les 5 premières lignes du contenu
+    lignes = contenu_popup.split("\n")
+    infos_joueur = lignes[:5]  # joueur, poids, style, poids_pala_poids, poids_pala_style
+
+    # Taille du cadre
+    box_height = 20 + len(infos_joueur) * 18
     c.setLineWidth(1)
     c.setStrokeColorRGB(0.2, 0.4, 0.8)
-    c.rect(margin_left - 5, box_bottom, (margin_right - margin_left) + 10, 90, stroke=1, fill=0)
+    c.rect(margin_left - 5, y - box_height, (margin_right - margin_left) + 10, box_height, stroke=1, fill=0)
 
+    # Texte dans le cadre
     c.setFont("Helvetica", 11)
+    y_text = y - 15
+    for line in infos_joueur:
+        c.drawString(margin_left, y_text, line)
+        y_text -= 18
 
-    for line in contenu_popup.split("\n")[:5]:  # Les 5 premières lignes = infos joueur
-        c.drawString(margin_left, y, line)
-        y -= 16
-
-    y -= 20
+    y = y - box_height - 30
 
     # ===== INFORMATIONS COMPLÉMENTAIRES =====
     c.setFont("Helvetica-Bold", 14)
     c.drawString(margin_left, y, "Informations complémentaires")
-    y -= 20
+    y -= 25
 
     c.setFont("Helvetica", 11)
     max_width = width - 100
 
-    for line in contenu_popup.split("\n")[5:]:  # Le reste = explications
+    # Le reste du texte = explications
+    explications = lignes[5:]
+
+    for line in explications:
         wrapped = simpleSplit(line, "Helvetica", 11, max_width)
 
         for wl in wrapped:
@@ -2084,11 +2091,15 @@ st.subheader("Scanner pour ouvrir l'application")
 qr_buffer = generate_qr_code(URL_QR)
 st.image(qr_buffer, caption=URL_QR, width=250)
 
+
+
 # ------------------------------------------------------------
 # LIENS PERSONNELS
 # ------------------------------------------------------------
 st.markdown("### 🔗 Mes liens personnels")
 st.markdown("[👉 Mon profil LinkedIn - Maxence Carmentos](https://www.linkedin.com/in/maxence-carmentos-601a68222/)")
+
+
 
 # ------------------------------------------------------------
 # ZONE PRIVÉE — uniquement si ?admin=1
@@ -2101,7 +2112,7 @@ is_admin = params.get("admin") == "1"
 if is_admin:
 
     st.subheader("Zone privée (admin)")
-
+    
     # ------------------------------------------------------------
     # STATISTIQUES PRIVÉES
     # ------------------------------------------------------------
