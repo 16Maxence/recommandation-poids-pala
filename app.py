@@ -2009,7 +2009,7 @@ st.set_page_config(page_title="Poids Pala", page_icon="🏓", layout="centered")
 
 incrementer_visite()
 
-st.title("Recommandation pour le poids de sa pala en fonction de son poids du corps")
+st.title("Recommandation Poids Pala (gomme pleine)")
 
 nom = st.text_input("Nom")
 prenom = st.text_input("Prénom")
